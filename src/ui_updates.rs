@@ -7,7 +7,7 @@ use crate::monitor::MonitorData;
 #[derive(Debug, Clone)]
 pub enum MonitorUpdate {
     /// Update with new monitor data
-    DataUpdate(MonitorData),
+    DataUpdate(Box<MonitorData>),
     /// Status message to display
     StatusMessage(String),
     /// Error message to display

@@ -93,7 +93,7 @@ impl MatchEvent for App {
             match update {
                 MonitorUpdate::DataUpdate(data) => {
                     log!("Received data update from background task");
-                    self.current_data = data;
+                    self.current_data = *data;
                     
                     // Update UI
                     if let Some(mut main_screen) = self.ui.widget(id!(body)).borrow_mut::<MainScreen>() {

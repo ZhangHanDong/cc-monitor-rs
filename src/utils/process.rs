@@ -37,11 +37,9 @@ pub fn find_npx_path() -> Option<String> {
         
         for pattern in nvm_paths {
             if let Ok(entries) = glob::glob(&pattern) {
-                for entry in entries {
-                    if let Ok(path) = entry {
-                        if path.exists() {
-                            return Some(path.to_string_lossy().to_string());
-                        }
+                for path in entries.flatten() {
+                    if path.exists() {
+                        return Some(path.to_string_lossy().to_string());
                     }
                 }
             }

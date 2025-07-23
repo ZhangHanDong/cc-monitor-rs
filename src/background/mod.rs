@@ -153,19 +153,13 @@ async fn perform_monitor_update(
     if let Some(last_status) = last_network_status {
         if !*last_status && network_connected {
             // Network restored notification
-            let _ = tokio::task::spawn_blocking(|| {
-                show_notification(
-                    &i18n::get(i18n::keys::NOTIF_TITLE),
-                    &i18n::get(i18n::keys::NOTIF_NETWORK_RESTORED)
-                );
+            tokio::task::spawn_blocking(|| {
+                show_notification("Claude Code 监测器", "🎉 网络连接已恢复");
             });
         } else if *last_status && !network_connected {
             // Network lost notification
-            let _ = tokio::task::spawn_blocking(|| {
-                show_notification(
-                    &i18n::get(i18n::keys::NOTIF_TITLE),
-                    &i18n::get(i18n::keys::NOTIF_NETWORK_LOST)
-                );
+            tokio::task::spawn_blocking(|| {
+                show_notification("Claude Code 监测器", "🚨 网络连接中断");
             });
         }
     }
@@ -204,7 +198,7 @@ async fn perform_monitor_update(
         };
         
         // Send usage notification
-        let _ = tokio::task::spawn_blocking({
+        tokio::task::spawn_blocking({
             let tokens = ccusage_data.tokens_num;
             let cost = ccusage_data.cost_num;
             let remaining = remaining_time.clone();
@@ -215,5 +209,5 @@ async fn perform_monitor_update(
     }
     
     // Enqueue update for UI
-    enqueue_monitor_update(MonitorUpdate::DataUpdate(monitor_data));
+    enqueue_monitor_update(MonitorUpdate::DataUpdate(Box::new(monitor_data)));
 }

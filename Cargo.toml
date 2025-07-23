@@ -37,3 +37,81 @@ path = "src/lib.rs"
 [[bin]]
 name = "cc-monitor-rs"
 path = "src/main.rs"
+
+## An optimized profile for development, with full debug info and assertions.
+[profile.debug-opt]
+inherits = "dev"
+opt-level = 3
+
+## An optimized release profile with thin LTO.
+[profile.release-lto]
+inherits = "release"
+lto = "thin"
+
+## Enable full optimizations when building app bundles for distribution.
+[profile.distribution]
+inherits = "release"
+codegen-units = 1
+lto = "fat"
+
+## Configuration for `cargo packager`
+[package.metadata.packager]
+product_name = "CC Monitor"
+identifier = "org.robius-china.CC-Monitor"
+authors = ["Zhang Handong", "Project Robius China"]
+license_file = "LICENSE-MIT"
+### Note: there is an 80-character max for each line of the `long_description`.
+long_description = """
+A real-time Claude Code usage monitor built with Rust and Makepad.
+"""
+icons = ["./packaging/cc_monitor_logo.png"]
+out_dir = "./dist"
+
+resources = [
+    { src = "./dist/resources/makepad_widgets", target = "makepad_widgets" },
+    { src = "./dist/resources/makepad_fonts_chinese_bold", target = "makepad_fonts_chinese_bold" },
+    { src = "./dist/resources/makepad_fonts_chinese_bold_2", target = "makepad_fonts_chinese_bold_2" },
+    { src = "./dist/resources/makepad_fonts_chinese_regular", target = "makepad_fonts_chinese_regular" },
+    { src = "./dist/resources/makepad_fonts_chinese_regular_2", target = "makepad_fonts_chinese_regular_2" },
+    { src = "./dist/resources/makepad_fonts_emoji", target = "makepad_fonts_emoji" },
+    { src = "./dist/resources/cc-monitor-rs", target = "cc-monitor-rs" },
+]
+
+before-each-package-command = """
+robius-packaging-commands before-each-package \
+    --force-makepad \
+    --binary-name cc-monitor-rs \
+    --path-to-binary ./target/release/cc-monitor-rs
+"""
+
+deep_link_protocols = [
+    { schemes = ["cc-monitor", "claude code usage"], role = "viewer" }, ## `name` is left as default
+]
+
+[package.metadata.packager.deb]
+depends = "./dist/depends_deb.txt"
+desktop_template = "./packaging/cc-monitor.desktop"
+section = "utils"
+
+[package.metadata.packager.macos]
+minimum_system_version = "11.0"
+frameworks = [ ]
+info_plist_path = "./packaging/Info.plist"
+entitlements = "./packaging/Entitlements.plist"
+signing_identity = "-"
+
+## Configuration for `cargo packager`'s generation of a macOS `.dmg`.
+[package.metadata.packager.dmg]
+background = "./packaging/CC-Monitor macOS dmg background.png"
+window_size = { width = 960, height = 540 }
+app_position = { x = 200, y = 250 }
+application_folder_position = { x = 760, y = 250 }
+
+
+## Configuration for `cargo packager`'s generation of a Windows `.exe` setup installer.
+[package.metadata.packager.nsis]
+## See this: <https://nsis.sourceforge.io/Docs/Chapter4.html#varconstant>
+appdata_paths = [
+    "$APPDATA/$PUBLISHER/$PRODUCTNAME",
+    "$LOCALAPPDATA/$PRODUCTNAME",
+]

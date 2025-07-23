@@ -23,7 +23,7 @@ impl NetworkMonitor {
     fn get_system_proxy() -> Option<String> {
         // Try to get proxy from networksetup command
         let output = Command::new("networksetup")
-            .args(&["-getwebproxy", "Wi-Fi"])
+            .args(["-getwebproxy", "Wi-Fi"])
             .output()
             .ok()?;
             
@@ -60,11 +60,11 @@ impl NetworkMonitor {
         // Use IP address instead of domain name to avoid DNS issues
         let output = if cfg!(target_os = "windows") {
             Command::new("ping")
-                .args(&["-n", "1", "8.8.8.8"])
+                .args(["-n", "1", "8.8.8.8"])
                 .output()
         } else {
             Command::new("ping")
-                .args(&["-c", "1", "-W", "2000", "8.8.8.8"])  // -W 2000 for 2s timeout
+                .args(["-c", "1", "-W", "2000", "8.8.8.8"])  // -W 2000 for 2s timeout
                 .output()
         };
         
@@ -140,7 +140,7 @@ impl NetworkMonitor {
             .or_else(|_| env::var("HTTPS_PROXY"))
             .or_else(|_| env::var("https_proxy"))
             .ok()
-            .or_else(|| Self::get_system_proxy());
+            .or_else(Self::get_system_proxy);
             
         // If proxy is set, test connection to proxy instead
         let test_addr = if let Some(proxy) = proxy_host {

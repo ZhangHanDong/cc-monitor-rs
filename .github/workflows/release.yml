@@ -1,0 +1,143 @@
+name: Release CI
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_ubuntu:
+        description: "Build Ubuntu"
+        required: false
+        default: "true"
+      build_macos:
+        description: "Build MacOS"
+        required: false
+        default: "true"
+      build_windows:
+        description: "Build Windows"
+        required: false
+        default: "true"
+      release_tags:
+        description: "Release Page Tags"
+        required: true
+
+
+jobs:
+  build_ubuntu:
+    name: Ubuntu
+    runs-on: ${{ matrix.os }}
+    if: ${{ github.event.inputs.build_ubuntu == 'true' }}
+    strategy:
+      matrix:
+        os: [ubuntu-22.04]
+        rust: [1.85]
+    steps:
+    - name: Checkout sources
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install libssl-dev pkg-config llvm clang libclang-dev binfmt-support libxcursor-dev libx11-dev libasound2-dev libpulse-dev
+
+    - name: Install Rust-stable
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        toolchain: ${{ matrix.rust }}
+
+    - name: Install cargo-packager
+      run: |
+        cargo +stable install --force --locked cargo-packager
+
+    - name: Install Robius Packaging Commands tool
+      run: |
+        cargo install --git https://github.com/tyreseluo/robius-packaging-commands.git --branch refactor_resources_copying_per-package
+
+    - name: Build
+      run: |
+        cargo packager --release --verbose
+        ls dist/
+    - name: Upload Dist
+      env:
+        GITHUB_TOKEN: ${{ secrets.CC_MONITOR_RELEASE }}
+      run: |
+        cd dist/
+        gh release upload ${{ github.event.inputs.release_tags }} cc_monitor_*.deb --clobber
+        gh release upload ${{ github.event.inputs.release_tags }} cc_monitor_*.tar.gz --clobber
+        gh release upload ${{ github.event.inputs.release_tags }} cc_monitor_*.AppImage --clobber
+
+  build_macos:
+    name: MacOS
+    runs-on: ${{ matrix.os }}
+    if: ${{ github.event.inputs.build_macos == 'true' }}
+    strategy:
+      matrix:
+        os: [macos-14, macos-13]
+        rust: [1.85]
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Install Rust-stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: ${{ matrix.rust }}
+
+      - name: Install cargo-packager
+        run: |
+          cargo +stable install --force --locked cargo-packager
+
+      - name: Install Robius Packaging Commands tool
+        run: |
+          cargo install --git https://github.com/tyreseluo/robius-packaging-commands.git --branch refactor_resources_copying_per-package
+
+      - name: Build
+        run: |
+          cargo packager --release --verbose
+          ls dist/
+
+      - name: Upload Dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.CC_MONITOR_RELEASE }}
+        run: |
+          cd dist/
+          gh release upload ${{ github.event.inputs.release_tags }} cc_monitor_*.dmg --clobber
+
+  build_windows:
+    name: Windows
+    runs-on: windows-2022
+    if: ${{ github.event.inputs.build_windows == 'true' }}
+    strategy:
+      matrix:
+        rust: [1.85]
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Install Rust-stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: ${{ matrix.rust }}
+
+      - name: Install cargo-packager
+        run: |
+          cargo +stable install --force --locked cargo-packager
+
+      - name: Install Robius Packaging Commands tool
+        run: |
+          cargo install --git https://github.com/tyreseluo/robius-packaging-commands.git --branch refactor_resources_copying_per-package
+
+      - name: Build
+        run: |
+          cargo packager --release --formats nsis --verbose
+          ls dist/
+      - name: Upload Dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.CC_MONITOR_RELEASE }}
+        run: |
+          cd dist/
+          $file=Get-ChildItem -Filter *.exe
+          gh release upload ${{ github.event.inputs.release_tags }} $file.name --clobber

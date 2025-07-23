@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use std::process::Command;
 use chrono::{DateTime, Local, NaiveDateTime, TimeZone};
 use regex::Regex;
@@ -264,7 +266,6 @@ impl CcusageMonitor {
             if line.contains("ACTIVE") || (line.contains("elapsed") && line.contains("remaining")) {
                 if let Some(data) = self.parse_session_line(line, &lines, i, true) {
                     return data;
-                } else {
                 }
             }
         }
@@ -353,7 +354,7 @@ impl CcusageMonitor {
         
         // Parse numeric values
         let tokens_num = tokens.replace(',', "").parse::<i64>().unwrap_or(0);
-        let cost_num = actual_cost.replace('$', "").replace(',', "").parse::<f64>().unwrap_or(0.0);
+        let cost_num = actual_cost.replace(['$', ','], "").parse::<f64>().unwrap_or(0.0);
         
         Some(CcusageData {
             latest_session: session_start_str.to_string(),
@@ -368,11 +369,11 @@ impl CcusageMonitor {
             cost_num,
             reset_time: if is_active {
                 // Parse session start time and calculate reset time
-                chrono::NaiveDateTime::parse_from_str(&session_start_str, "%m/%d/%Y, %I:%M:%S %p")
+                chrono::NaiveDateTime::parse_from_str(session_start_str, "%m/%d/%Y, %I:%M:%S %p")
                     .ok()
                     .map(|dt| chrono::Local.from_local_datetime(&dt).unwrap() + chrono::Duration::hours(5))
                     .or_else(|| {
-                        chrono::NaiveDateTime::parse_from_str(&session_start_str, "%Y/%m/%d %H:%M:%S")
+                        chrono::NaiveDateTime::parse_from_str(session_start_str, "%Y/%m/%d %H:%M:%S")
                             .ok()
                             .map(|dt| chrono::Local.from_local_datetime(&dt).unwrap() + chrono::Duration::hours(5))
                     })
@@ -425,7 +426,7 @@ impl CcusageMonitor {
     fn update_ccusage(&mut self) {
         if let Some(npx_path) = &self.npx_path {
             let _ = Command::new(npx_path)
-                .args(&["--yes", "ccusage@latest", "--version"])
+                .args(["--yes", "ccusage@latest", "--version"])
                 .output();
         }
     }
@@ -436,7 +437,7 @@ impl CcusageMonitor {
         if let Some(npx_path) = &self.npx_path {
             // Try daily command first
             if let Ok(output) = Command::new(npx_path)
-                .args(&["--yes", "ccusage@latest", "daily", "--order", "asc"])  // Remove calculate mode for speed
+                .args(["--yes", "ccusage@latest", "daily", "--order", "asc"])  // Remove calculate mode for speed
                 .output() 
             {
                 if output.status.success() {
@@ -448,7 +449,7 @@ impl CcusageMonitor {
             // If no data from daily, try blocks command
             if daily_costs.is_empty() {
                 if let Ok(output) = Command::new(npx_path)
-                    .args(&["--yes", "ccusage@latest", "blocks"])  // Remove calculate mode for speed
+                    .args(["--yes", "ccusage@latest", "blocks"])  // Remove calculate mode for speed
                     .output()
                 {
                     if output.status.success() {
