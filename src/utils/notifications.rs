@@ -50,7 +50,6 @@ pub fn show_critical_notification(title: &str, message: &str) {
         if let Err(e) = Notification::new()
             .summary(title)
             .body(message)
-            .urgency(Urgency::Critical)
             .show()
         {
             eprintln!("Failed to show notification: {}", e);

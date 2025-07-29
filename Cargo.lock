@@ -4,9 +4,8 @@ version = 4
 
 [[package]]
 name = "ab_glyph_rasterizer"
-version = "0.1.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b2187590a23ab1e3df8681afdf0987c48504d80291f002fcdb651f0ef5e25169"
+version = "0.1.8"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 
 [[package]]
 name = "addr2line"
@@ -1759,8 +1758,7 @@ dependencies = [
 [[package]]
 name = "makepad-derive-live"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2ee892c9f885bce664b8d3a7a890ce271b3d6960cd7dd59c9a964c5ef679db44"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-live-id",
  "makepad-micro-proc-macro",
@@ -1769,8 +1767,7 @@ dependencies = [
 [[package]]
 name = "makepad-derive-wasm-bridge"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "11caac35196f3f0fee2c199c3c0cf16037ff296b6e3c3738f804cda0cd360758"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-micro-proc-macro",
 ]
@@ -1778,8 +1775,7 @@ dependencies = [
 [[package]]
 name = "makepad-derive-widget"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4ba3364a7a0dab9b714014b78e67c875fae6522f8ba9bddb7f899fe0623239f5"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-live-id",
  "makepad-micro-proc-macro",
@@ -1788,8 +1784,7 @@ dependencies = [
 [[package]]
 name = "makepad-draw"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "de6d007a4364deadfe250732712516c7f9d1e31ebb9484c9051fa6c41bd0ff03"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "ab_glyph_rasterizer",
  "fxhash",
@@ -1808,8 +1803,7 @@ dependencies = [
 [[package]]
 name = "makepad-fonts-chinese-bold"
 version = "1.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "30978a872db584c112cefff3668efc3e6abea3e4dd96ec2560fd9fd5e31e3ba2"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-platform",
 ]
@@ -1817,8 +1811,7 @@ dependencies = [
 [[package]]
 name = "makepad-fonts-chinese-bold-2"
 version = "1.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4b63d41003cb79ebd382c2f5b176185508c93e27c304e16677b3647054391f69"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-platform",
 ]
@@ -1826,8 +1819,7 @@ dependencies = [
 [[package]]
 name = "makepad-fonts-chinese-regular"
 version = "1.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be2800f3d3da5bb1a6653da7db36ef604face70744831cf38feb18deb31093b4"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-platform",
 ]
@@ -1835,8 +1827,7 @@ dependencies = [
 [[package]]
 name = "makepad-fonts-chinese-regular-2"
 version = "1.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d875c0518722d880e2ab7197f731e6a17f7b990e2c661aa77444b58e85416f7"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-platform",
 ]
@@ -1844,8 +1835,7 @@ dependencies = [
 [[package]]
 name = "makepad-fonts-emoji"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "513997fb0f0e649881ffab743f0aeb19d63125d404ee2445a2364f35f94619a2"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-platform",
 ]
@@ -1853,20 +1843,17 @@ dependencies = [
 [[package]]
 name = "makepad-futures"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "27f08c056f422bfea7c0be56db6a6140b0b4ac9e8719b60b99996e1616f9a634"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 
 [[package]]
 name = "makepad-futures-legacy"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e27bf6f655d3a5b538f8f298ba7a6a9103984ec24fbd7b10d0aed22d3b339a67"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 
 [[package]]
 name = "makepad-html"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "84c6d9872427cddc4505748e130fe93c54031e56d8c5b010a906c77e595e8e7e"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-live-id",
 ]
@@ -1874,8 +1861,7 @@ dependencies = [
 [[package]]
 name = "makepad-http"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4d019c2ee9e1a2ef324bf9a3a5941173e1240d72df4444cc3bc17871c4b6b196"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 
 [[package]]
 name = "makepad-jni-sys"
@@ -1886,8 +1872,7 @@ checksum = "9775cbec5fa0647500c3e5de7c850280a88335d1d2d770e5aa2332b801ba7064"
 [[package]]
 name = "makepad-live-compiler"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d4fbdf4148bfb0ef3c38eac764a97ee1243249f37d99c0c6ed1b94b6a6d1867c"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-derive-live",
  "makepad-live-tokenizer",
@@ -1897,8 +1882,7 @@ dependencies = [
 [[package]]
 name = "makepad-live-id"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ee6e3e340abbf7de5e70fb6e848e121066f1b3e5845d9bc3eb689f544719ee9"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-live-id-macros",
 ]
@@ -1906,8 +1890,7 @@ dependencies = [
 [[package]]
 name = "makepad-live-id-macros"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dcdb4dab2091b8588c8b3b23ff13c4d65558559590a9dd2dd1edd412c772b19b"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-micro-proc-macro",
 ]
@@ -1915,8 +1898,7 @@ dependencies = [
 [[package]]
 name = "makepad-live-tokenizer"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eab7602b22536a6bbbc1c1041205008bb3fd474eef522e13d7d8d964c9bdcadf"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-live-id",
  "makepad-math",
@@ -1926,8 +1908,7 @@ dependencies = [
 [[package]]
 name = "makepad-math"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f1f2b5e8591ee5d974e4a7e39172c91f9671cc57c4ace0b40f7c551c7cbec453"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-micro-serde",
 ]
@@ -1935,14 +1916,12 @@ dependencies = [
 [[package]]
 name = "makepad-micro-proc-macro"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c0147a4fcc0f891173556b459b8830de2e11542c6f1071038a4cf1cf73e6ecf0"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 
 [[package]]
 name = "makepad-micro-serde"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e5d7eb31626348b42e4d741d6783ff3a006b075fd7bbca9ffe7ac81a89e6de8c"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-live-id",
  "makepad-micro-serde-derive",
@@ -1951,8 +1930,7 @@ dependencies = [
 [[package]]
 name = "makepad-micro-serde-derive"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1b3bca6e32b8822ef4ae792f90c346008e056d71b55b8d8030f3afd240e17d4a"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-micro-proc-macro",
 ]
@@ -1960,14 +1938,12 @@ dependencies = [
 [[package]]
 name = "makepad-objc-sys"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c195852bf1e5dc94b791340d497a7b3b0f92ecafc8ebfaab00f60b04dbe82556"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 
 [[package]]
 name = "makepad-platform"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "261157075e9bdd494925fe5dc1650828c8c047f087b413d00f0e3e8e650eb7b8"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "bitflags 2.9.1",
  "hilog-sys",
@@ -1985,14 +1961,13 @@ dependencies = [
  "smallvec",
  "windows",
  "windows-core 0.56.0",
- "windows-targets 0.48.5",
+ "windows-targets 0.52.6",
 ]
 
 [[package]]
 name = "makepad-rustybuzz"
 version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "51344c88f3e7451173427baeb72027b28bb1ad318e09964b4565d42750b0e460"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "bitflags 1.3.2",
  "bytemuck",
@@ -2007,8 +1982,7 @@ dependencies = [
 [[package]]
 name = "makepad-shader-compiler"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8bae5f220762bc75344b4050cbc12428e39a04faa9b2ea80f90edccca7985bca"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-live-compiler",
 ]
@@ -2016,14 +1990,12 @@ dependencies = [
 [[package]]
 name = "makepad-ttf-parser"
 version = "0.21.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d7c805014e52c8e211e1c701dae5ee30f087d5d583b39d2e53d709c0feb361fb"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 
 [[package]]
 name = "makepad-vector"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cdc7f49b4be2f20c94c3bddaca1bdad02ca2b18687d0b3cb5f574b8a52aae3ee"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-ttf-parser",
  "resvg",
@@ -2032,8 +2004,7 @@ dependencies = [
 [[package]]
 name = "makepad-wasm-bridge"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "905269c4d88c5ad0fbff51fb8a424f28da1ed8e961f9a79e1a917645931f847e"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-derive-wasm-bridge",
  "makepad-live-id",
@@ -2042,8 +2013,7 @@ dependencies = [
 [[package]]
 name = "makepad-widgets"
 version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a5860c55bd4c7f57ce6787f3b79800d57e23073fde4d62c33db4faabdae30c64"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-derive-widget",
  "makepad-draw",
@@ -2062,8 +2032,7 @@ dependencies = [
 [[package]]
 name = "makepad-zune-core"
 version = "0.2.14"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "72f29ec1642e698157887d7ffc7dcb91f0c4a7ddcea5aee7fd8629c204e9a382"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "bitflags 2.9.1",
 ]
@@ -2071,8 +2040,7 @@ dependencies = [
 [[package]]
 name = "makepad-zune-jpeg"
 version = "0.3.17"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4368140a5ef74be396801b3c22eae15ad7a846aecd143bf6847008fc85a4c6e3"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "makepad-zune-core",
 ]
@@ -2080,8 +2048,7 @@ dependencies = [
 [[package]]
 name = "makepad-zune-png"
 version = "0.4.10"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b50b1aa6aa48214b02a684e9498b2eb559576504cfc6f1c1a0397ff29df5b9d"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 dependencies = [
  "zune-core",
  "zune-inflate",
@@ -3044,8 +3011,7 @@ checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
 [[package]]
 name = "sdfer"
 version = "0.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "27fd75ebc7c721a70d202c7cdd2beb108bbe5dfaaea68e06aff4de2f4cc240ed"
+source = "git+https://github.com/makepad/makepad?branch=dev#963cad9d813314b8a0233fb1deccd7cd4cf36b85"
 
 [[package]]
 name = "semver"

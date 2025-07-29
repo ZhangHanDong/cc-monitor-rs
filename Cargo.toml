@@ -12,8 +12,8 @@ keywords = ["claude", "monitoring", "makepad", "ui", "cli"]
 categories = ["gui", "command-line-utilities", "visualization"]
 
 [dependencies]
-# makepad-widgets = { git = "https://github.com/kevinaboos/makepad", branch = "portal_list_is_filling_viewport" }
-makepad-widgets = "1.0.0"
+makepad-widgets = { git = "https://github.com/makepad/makepad", branch = "dev" }
+# makepad-widgets = "1.0.0"
 tokio = { version = "1.41", features = ["full"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
@@ -41,3 +41,73 @@ path = "src/lib.rs"
 [[bin]]
 name = "cc-monitor-rs"
 path = "src/main.rs"
+
+[profile.debug-opt]
+inherits = "dev"
+opt-level = 3
+
+[profile.release-lto]
+inherits = "release"
+lto = "thin"
+
+[profile.distribution]
+inherits = "release"
+codegen-units = 1
+lto = "fat"
+
+## Configuration for `cargo packager`
+[package.metadata.packager]
+product_name = "CC Monitor"
+identifier = "org.robius-china.CC-Monitor"
+authors = ["Zhang Handong"]
+license_file = "LICENSE"
+### Note: there is an 80-character max for each line of the `long_description`.
+long_description = """
+A real-time Claude Code usage monitor built with Rust and Makepad.
+"""
+icons = ["./packaging/ccm-logo-128.png"]
+out_dir = "./dist"
+
+resources = [
+    # Makepad resources
+    { src = "./dist/resources/makepad_widgets", target = "makepad_widgets" },
+    { src = "./dist/resources/makepad_fonts_chinese_bold", target = "makepad_fonts_chinese_bold" },
+    { src = "./dist/resources/makepad_fonts_chinese_bold_2", target = "makepad_fonts_chinese_bold_2" },
+    { src = "./dist/resources/makepad_fonts_chinese_regular", target = "makepad_fonts_chinese_regular" },
+    { src = "./dist/resources/makepad_fonts_chinese_regular_2", target = "makepad_fonts_chinese_regular_2" },
+    { src = "./dist/resources/makepad_fonts_emoji", target = "makepad_fonts_emoji" },
+    # CC Monitor resources
+    { src = "./dist/resources/cc_monitor_rs", target = "cc_monitor_rs" },
+]
+
+before-each-package-command = """
+robius-packaging-commands before-each-package \
+    --force-makepad \
+    --binary-name cc-monitor-rs \
+    --path-to-binary ./target/release/cc-monitor-rs
+"""
+
+[package.metadata.packager.deb]
+depends = "./dist/depends_deb.txt"
+desktop_template = "./packaging/cc_monitor.desktop"
+section = "utils"
+
+[package.metadata.packager.macos]
+minimum_system_version = "11.0"
+frameworks = [ ]
+info_plist_path = "./packaging/Info.plist"
+entitlements = "./packaging/Entitlements.plist"
+signing_identity = "-"
+
+
+[package.metadata.packager.dmg]
+background = "./packaging/CC Monitor macOS dmg background.png"
+window_size = { width = 960, height = 540 }
+app_position = { x = 200, y = 250 }
+application_folder_position = { x = 760, y = 250 }
+
+[package.metadata.packager.nsis]
+appdata_paths = [
+    "$APPDATA/$PUBLISHER/$PRODUCTNAME",
+    "$LOCALAPPDATA/$PRODUCTNAME",
+]
